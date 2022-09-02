@@ -23,7 +23,9 @@ struct ContentView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.default)
                         .focused($isFocused)
-                    TextField("Year", text: $year)
+                    TextField("Year", text: Binding(
+                        get: {year},
+                        set: {year = $0.filter{"0123456789".contains($0)}}))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .focused($isFocused)
@@ -56,9 +58,6 @@ struct ContentView: View {
                 List{
                     ForEach(movie.sortMovies()) { mov in
                         FilmRowList(name: mov.name, year: String(mov.year))
-                    }
-                    .onDelete { indexSet in
-                        movie.movies.remove(atOffsets: indexSet)
                     }
                 }
                 .listStyle(InsetListStyle())

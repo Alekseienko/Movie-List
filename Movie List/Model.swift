@@ -7,20 +7,19 @@
 
 import Foundation
 
-struct Film: Identifiable {
+struct Film: Identifiable, Hashable {
     var id = UUID()
     var name: String = ""
     var year: Int = 0
 }
 
 struct Movie {
-    
-    var movies: [Film] = []
+    var movies: Set<Film> = []
     // Add new film in list
     mutating func addMovie(name: String, year: Int) {
         let filter = movies.filter { $0.name.contains(name) }
         if filter.isEmpty {
-            movies.append(Film(name: name.capitalized, year: year))
+            movies.insert(Film(name: name.capitalized, year: year))
         }
     }
     // Checks if the movie is in the list
