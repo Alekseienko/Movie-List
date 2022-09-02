@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Movie List
 //
-//  Created by alekseienko on 01.09.2022.//
+//  Created by alekseienko on 01.09.2022.
 //
 
 import SwiftUI
