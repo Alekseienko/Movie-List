@@ -54,7 +54,7 @@ struct ContentView: View {
                 }
                 .padding()
                 List{
-                    ForEach(movie.movies) { mov in
+                    ForEach(movie.sortMovies()) { mov in
                         FilmRowList(name: mov.name, year: String(mov.year))
                     }
                     .onDelete { indexSet in

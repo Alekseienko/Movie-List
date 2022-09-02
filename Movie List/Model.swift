@@ -18,12 +18,19 @@ struct Movie {
     var movies: [Film] = []
     // Add new film in list
     mutating func addMovie(name: String, year: Int) {
-            movies.append(Film(name: name, year: year))
+        let filter = movies.filter { $0.name.contains(name) }
+        if filter.isEmpty {
+            movies.append(Film(name: name.capitalized, year: year))
+        }
     }
     // Checks if the movie is in the list
     func scanList(name: String) -> Bool {
        let filter = movies.filter { $0.name.contains(name) }
        return !filter.isEmpty
    }
+    
+    func sortMovies() -> [Film] {
+        return movies.sorted { $0.name < $1.name }
+    }
     
 }
